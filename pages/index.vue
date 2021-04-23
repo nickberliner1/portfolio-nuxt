@@ -2,7 +2,11 @@
   <v-row justify="center" align="center">
     <v-col cols="12" sm="8" md="6">
       <div class="text-center">
-        <img src="~/assets/sketch.svg" />
+        <kinesis-container>
+          <kinesis-element type="translate" :strength="20">
+            <img src="~/assets/sketch.svg" />
+          </kinesis-element>
+        </kinesis-container>
         <vuetify-logo />
       </div>
       <v-card>
