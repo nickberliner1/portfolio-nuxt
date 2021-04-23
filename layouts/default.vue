@@ -29,8 +29,16 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <!-- <v-app-bar-nav-icon @click.stop="drawer = !drawer" /> -->
+
       <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+      >
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+      
+      <!-- <v-btn
         icon
         @click.stop="miniVariant = !miniVariant"
       >
@@ -55,8 +63,9 @@
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
-      </v-btn>
+      </v-btn> -->
     </v-app-bar>
+    
     <v-main>
       <v-container>
         <nuxt />
@@ -90,6 +99,7 @@
 
 <script>
 export default {
+  
   data () {
     return {
       clipped: false,
@@ -112,6 +122,31 @@ export default {
       rightDrawer: false,
       title: 'Vuetify.js'
     }
+  },
+
+  methods: {
+    onMouseMove() {
+      const circle = document.querySelector(".mouse-circle");
+      const { top, left } = body.getBoundingClientRect();
+      const { clientY, clientX } = e;
+
+      circle.style.top = `${clientY - top}px`;
+      circle.style.left = `${clientX - left}px`
+    }
   }
 }
 </script>
+
+<style>
+.mouse-circle {
+  position: absolute;
+  display: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border: 2px solid red;
+}
+</style>
